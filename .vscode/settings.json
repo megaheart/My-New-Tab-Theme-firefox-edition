@@ -1,0 +1,11 @@
+{
+    "files.exclude": {
+        "**/*.js.map": true,
+        "node_modules": true,
+        "web-ext": true,
+        "package-lock.json": true,
+        "*.js": false,
+        "*.zip": true,
+        "web-ext-artifacts/**": true
+    }
+}

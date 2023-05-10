@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            border-radius: 3px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #wallpaper {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: url(100518863_p0.jpg) no-repeat center center;
+            background-size: cover;
+        }
+
+        #wall {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        #main {
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            padding: 0 5px;
+        }
+
+        #main>.category-box {
+            border-radius: 5px;
+            padding: 20px;
+            /* background: wheat; */
+            background: rgb(245 222 179 / 40%);
+            margin: 10px 5px;
+            box-shadow: 0px 1px 4px #000000;
+        }
+
+        #main>.category-box>.category-header {
+            display: grid;
+            grid-template-columns: 56px auto;
+        }
+
+        #main>.category-box>.category-header>img.category-icon {
+            width: 56px;
+        }
+
+        #main>.category-box>.category-header>h1.category-title {
+            font-size: 26px;
+            font-weight: 400;
+            align-self: center;
+            text-align: center;
+            margin: 0 56px 0 0;
+            color: #634000;
+        }
+
+        #main>.category-box>.category-main>.thread-box {
+            border-radius: 5px;
+            padding: 20px;
+            padding-top: 12px;
+            margin: 10px 0px;
+            box-shadow: 0px 1px 3px #000000;
+            transition: 0.4s;
+        }
+
+        /* #main>.category-box>.category-main>.thread-box:hover{
+            transform: translateY(-2px);
+            box-shadow: 0px 3px 4px #000000;
+        } */
+        #squats-box {
+            background: linear-gradient(45deg, #0376e3, #369dff);
+        }
+
+        #pushups-box,
+        #to-learn-box {
+            background: linear-gradient(45deg, #00a55e, #00d97c);
+            background: linear-gradient(45deg, rgb(0 165 94 / 60%), rgb(0 217 124 / 80%));
+        }
+
+        #english-box {
+            background: linear-gradient(45deg, rgb(255, 134, 21, 60%), rgb(255, 149, 48, 80%));
+        }
+
+        #drawing-box {
+            background: linear-gradient(-45deg, rgb(206, 61, 37, 60%), rgb(206, 45, 67, 80%));
+        }
+
+        #design-box {
+            background: linear-gradient(45deg, rgb(125, 63, 152, 60%), rgb(164, 88, 197, 80%));
+        }
+
+        #main>.category-box>.category-main>.thread-box>.thread-header {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #main>.category-box>.category-main>.thread-box>.thread-header>.thread-icon {
+            width: 40px;
+            grid-column: 1;
+            display: inline-block;
+        }
+
+        #main>.category-box>.category-main>.thread-box>.thread-header>.thread-title {
+            font-size: 20px;
+            font-weight: 400;
+            display: inline-block;
+            text-align: center;
+            margin: 0 56px 0 10px;
+            grid-column: 2;
+            color: white;
+            text-shadow: 0px 1px 2px black;
+            transform: translateY(-10px);
+        }
+
+        #main>.category-box>.category-main>.thread-box>.thread-main {
+            border-radius: 10px;
+            padding: 5px 0px;
+            background: white;
+            margin: 0px -4px 0 -4px;
+            border-width: 4px;
+            border-style: solid;
+            overflow-y: auto;
+        }
+
+        #squats-box>.thread-main {
+            border-color: #1951b0;
+        }
+
+        #pushups-box>.thread-main,
+        #to-learn-box>.thread-main {
+            border-color: #039656;
+        }
+
+        #english-box>.thread-main {
+            border-color: #cb6200;
+        }
+
+        #drawing-box>.thread-main {
+            border-color: #a21428;
+        }
+
+        #design-box>.thread-main {
+            border-color: #682b83;
+        }
+        #to-learn-box>.thread-main, #english-box>.thread-main{
+            height: 500px;
+        }
+
+        #main>.category-box>.category-main>.thread-box>.thread-main>ul {
+            overflow: auto;
+        }
+
+        #main>.category-box>.category-main>.thread-box>.thread-main>ul>li>a {
+            display: grid;
+            grid-template-columns: 16px auto;
+            padding: 5px 15px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        #main>.category-box>.category-main>.thread-box>.thread-main>ul>li:hover {
+            background: rgb(228, 228, 228);
+
+        }
+
+        #main>.category-box>.category-main>.thread-box>.thread-main>ul>li>a:active {
+
+            transform: scale(0.98);
+        }
+
+        #main>.category-box>.category-main>.thread-box>.thread-main>ul>li>a>img {
+            height: 16px;
+            align-self: center;
+        }
+
+        #main>.category-box>.category-main>.thread-box>.thread-main>ul>li>a>span {
+            align-items: center;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            color: #282828;
+            margin-left: 10px;
+        }
+
+        .to-do-box {
+            background: white !important;
+            display: flex;
+            border-bottom: 1px dashed gray;
+            height: 46px;
+            user-select: none;
+        }
+
+        .to-do-box:last-child {
+            border: none;
+        }
+
+        .to-do-box>label {
+            display: flex;
+            cursor: pointer;
+            transition: 0.4s;
+        }
+
+        .to-do-box>label>img {
+            height: 32px;
+            margin: auto 0;
+        }
+
+        .to-do-box>label>span {
+            margin: auto 0px auto 10px;
+        }
+
+        .to-do-box>input {
+            display: inline-block;
+            appearance: unset;
+            height: 20px;
+            width: 20px;
+            border-radius: 4px;
+            border: 3px solid gray;
+            transition: 0.2s;
+            outline: none !important;
+            margin: auto 10px auto 15px;
+            cursor: pointer;
+        }
+
+        .to-do-box>input::before {
+            content: "";
+            font-family: "Segoe MDL2 Assets";
+            transform: scale(0.7);
+            opacity: 0;
+            color: white;
+        }
+
+        .to-do-box>input:checked {
+            background: rgb(4, 119, 42);
+            border-color: rgb(4, 119, 42);
+        }
+
+        .to-do-box>input:checked::before {
+            content: "";
+            font-family: "Segoe MDL2 Assets";
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .to-do-box>input:checked+label {
+            opacity: 0.35;
+            filter: grayscale(100%);
+
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="wallpaper"></div>
+    <div id="wall">
+        <div id="main">
+            <div class="category-box">
+                <div class="category-header">
+                    <img class="category-icon" src="icons/newTab/exercise.png" />
+                    <h1 class="category-title">Exercise</h1>
+                </div>
+                <div class="category-main">
+                    <div class="thread-box" id="to-learn-box">
+                        <div class="thread-header">
+                            <img class="thread-icon" src="icons/newTab/squats.png" />
+                            <h2 class="thread-title">To Learn</h2>
+                        </div>
+                        <div class="thread-main">
+                            <ul>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="category-box">
+                <div class="category-header">
+                    <img class="category-icon" src="icons/newTab/language.png" />
+                    <h1 class="category-title">Foreign language</h1>
+                </div>
+                <div class="category-main">
+                    <div class="thread-box" id="english-box">
+                        <div class="thread-header">
+                            <img class="thread-icon" src="icons/newTab/flag-Stars-and-Stripes-May-1-1795.png" />
+                            <h2 class="thread-title">English</h2>
+                        </div>
+                        <div class="thread-main">
+                            <ul>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="category-box">
+                <div class="category-header">
+                    <img class="category-icon" src="icons/newTab/light.png" />
+                    <h1 class="category-title">Creation</h1>
+                </div>
+                <div class="category-main">
+                    <div class="thread-box" id="drawing-box">
+                        <div class="thread-header">
+                            <img class="thread-icon" src="icons/newTab/paint.png" />
+                            <h2 class="thread-title">Drawing</h2>
+                        </div>
+                        <div class="thread-main">
+                            <ul>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="thread-box" id="design-box">
+                        <div class="thread-header">
+                            <img class="thread-icon" src="icons/newTab/photo-editor.png" />
+                            <h2 class="thread-title">Design</h2>
+                        </div>
+                        <div class="thread-main">
+                            <ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="newTab.js"></script>
+</body>
+
+</html>
